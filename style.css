@@ -3,3 +3,18 @@
 .subheading{
     font-family: Noto Serif;
 }
+.btn:first-child{
+    background-color: red;
+}
+.btn:nth-child(2) {
+    background-color: blue;
+}
+.btn:nth-child(3) {
+    background-color: green;
+}
+.btn:nth-child(4) {
+    background-color: purple;
+}
+.btn:nth-child(5) {
+    background-color: yellow;
+}

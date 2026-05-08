@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conquest ⚔️</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/dom.js" defer></script>
 </head>
 
 <body>
@@ -15,44 +16,47 @@
     </div>
     <div class="content">
         <div class="toolbar" id="toolbar">
-        <button class="btn"></button>
-        <button class="btn"></button>
-        <button class="btn"></button>
-        <button class="btn"></button>
-        <button class="btn"></button>
-        <button class="btn"></button>
-    </div>
-    <!-- RED -->
-    <div class="active" id="red">
-        <h3></h3>
-    </div>
+            <div class="btn-container active"><button class="btn "></button></div>
+            <div class="btn-container"><button class="btn "></button></div>
+            <div class="btn-container"><button class="btn "></button></div>
+            <div class="btn-container"><button class="btn "></button></div>
+            <div class="btn-container"><button class="btn "></button></div>
+            <div class="btn-container"><button class="btn "></button></div>
 
-    <!-- BLUE -->
+        </div>
+        <div class="factions">
+            <!-- RED -->
+            <div class="faction-info" id="red">
+                <h3>RED</h3>
+            </div>
 
-    <div class="active" id="blue">
-        <h3></h3>
-    </div>
+            <!-- BLUE -->
 
-    <!-- GREEN -->
-    <div class="active" id="green">
-        <h3></h3>
-    </div>
+            <div class="faction-info" id="blue">
+                <h3>BLUE</h3>
+            </div>
 
-    <!-- PURPLE -->
-    <div class="active" id="purple">
-        <h3></h3>
-    </div>
+            <!-- GREEN -->
+            <div class="faction-info" id="green">
+                <h3>GREEN</h3>
+            </div>
 
-    <!-- YELLOW -->
-    <div class="active" id="yellow">
-        <h3></h3>
-    </div>
+            <!-- PURPLE -->
+            <div class="faction-info" id="purple">
+                <h3>PURPLE</h3>
+            </div>
 
-    <!-- WHITE -->
-    <div class="active" id="white">
-        <h3></h3>
-    </div>
-    </div>
+            <!-- YELLOW -->
+            <div class="faction-info" id="yellow">
+                <h3>YELLOW</h3>
+            </div>
+
+            <!-- WHITE -->
+            <div class="faction-info" id="white">
+                <h3>WHITE</h3>
+            </div>
+        </div>
+
 </body>
 
 </html>

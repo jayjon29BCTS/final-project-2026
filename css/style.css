@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+
+.subheading{
+    font-family: Noto Serif;
+}
+.toolbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.toolbar>.btn-container{
+    max-width:60px ;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+
+}
+.btn{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    border: none;
+    outline: none;
+    margin: 5px;
+}
+.active{
+    border-top: 3px solid rgb(119, 119, 119);  
+}
+.btn-container:first-child .btn{
+    background-color: red;
+}
+.btn-container:nth-child(2)  .btn {
+    background-color: blue;
+}
+.btn-container:nth-child(3)  .btn {
+    background-color: green;
+}
+.btn-container:nth-child(4)  .btn {
+    background-color: purple;
+}
+.btn-container:nth-child(5)  .btn {
+    background-color: yellow;
+}
+.faction-info{
+    width: 100%;
+    max-height: 1000px;
+    font-family: Noto serif;
+    border:3px solid rgb(119, 119, 119);
+    border-top: none
+}
+.factions{
+
+}

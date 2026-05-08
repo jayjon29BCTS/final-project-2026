@@ -1,0 +1,1 @@
+const factionButton = document.querySelectorAll(toolbar)

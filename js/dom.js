@@ -6,9 +6,5 @@ const yellowInfo = document.querySelector("#yellow")
 const purpleInfo = document.querySelector("#purple")
 const whiteInfo = document.querySelector("#white")
 const greenInfo = document.querySelector("#green")
-let factionButtonsLength = 0
-factionButtons.forEach((btn)=>{
-    factionButtonsLength++
-})
 const colorKey = [redInfo, blueInfo, greenInfo, purpleInfo, yellowInfo, whiteInfo]
 

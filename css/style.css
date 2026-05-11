@@ -1,7 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+    .heading{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .heading>img{
+        max-width: 300px;
+    }
 
 .subheading{
     font-family: Noto Serif;
+    text-align: center;
 }
 .toolbar{
     width: 100%;
@@ -47,9 +56,38 @@
     width: 100%;
     max-height: 1000px;
     font-family: Noto serif;
-    border:3px solid rgb(119, 119, 119);
-    border-top: none
+    border:3px solid rgba(119, 119, 119);
+    border-top: 1px solid rgba(119, 119, 119);
+    border-right:1px solid rgba(119, 119, 119);
+    display: none;
+    max-width: 90%;
+    margin-left: 40px;
 }
-.factions{
-
+.faction-info h3, .faction-info p{
+    margin-left: 5px;
+    margin-top: 5px;
+}
+.dark-mode{
+    background-color: rgb(87, 87, 87);
+    color: rgb(196, 196, 196);
+}
+#red{
+    background-color: rgb(255, 119, 119);
+    border-top-right-radius: 20px;
+}
+#blue{
+    background-color: rgb(115, 185, 250);
+    border-top-right-radius: 20px;
+}
+#green{
+    background-color: rgb(115, 216, 115);
+    border-top-right-radius: 20px;
+}
+#purple{
+    background-color: rgb(184, 109, 255);
+    border-top-right-radius: 20px;
+}
+#yellow{
+    background-color: rgb(255, 255, 128);
+    border-top-right-radius: 20px;
 }

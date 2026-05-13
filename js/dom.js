@@ -7,4 +7,6 @@ const purpleInfo = document.querySelector("#purple")
 const whiteInfo = document.querySelector("#white")
 const greenInfo = document.querySelector("#green")
 const colorKey = [redInfo, blueInfo, greenInfo, purpleInfo, yellowInfo, whiteInfo]
-
+let gridData = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+const gridForm = document.querySelector(".testing")
+const gridInput = document.querySelector(".grid-text")

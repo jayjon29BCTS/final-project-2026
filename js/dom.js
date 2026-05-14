@@ -10,3 +10,5 @@ const colorKey = [redInfo, blueInfo, greenInfo, purpleInfo, yellowInfo, whiteInf
 let gridData = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
 const gridForm = document.querySelector(".testing")
 const gridInput = document.querySelector(".grid-text")
+
+// testing

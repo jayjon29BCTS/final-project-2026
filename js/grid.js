@@ -36,7 +36,7 @@ gridForm.addEventListener("submit", (e)=>{
 }
     if (colors.includes(text[1||2||3||4]+"army")){
         console.log(text[1||2||3||4]+"army")
-    }
+    } 
     saveToStorage(operandEl.id, land, isTerritory, hasBuildings)
 })
 
@@ -54,4 +54,5 @@ function saveToStorage(elId, landType, whosTerritory, thereBuildings){
     console.log(elIdA, elIdB)
     idInt =  elIdA.toLowerCase().charCodeAt(0) - 97 + elIdB.toLowerCase().charCodeAt(0) - 97 ;
     console.log(idInt)
+    localStorage.setItem("storageData", JSON.stringify(gridData))
 }

@@ -14,4 +14,5 @@ let gridData = []
 for(let i=0; i<64; i++){
     gridData.push({land:false, territory:"none", buildings:"none", army:false})
 }
+
 const buildings = ["hut","lumberyard", "garden", "embassy", "port", "refinery","quarry","barracks", "multicenter", "complex", "defenseArray"]

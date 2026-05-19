@@ -30,7 +30,7 @@ gridForm.addEventListener("submit", (e)=>{
     if(buildings.includes(text[3])||buildings.includes(text[2]||buildings.includes(text[1]))) {
             console.log("buildings")
             territory.textContent = text[3]||text[2]||text[1]
-            hasBuildings=!hasBuildings
+            hasBuildings= territory.textContent
             territory.classList.add("building-text")
     }
 }
@@ -52,7 +52,12 @@ function saveToStorage(elId, landType, whosTerritory, thereBuildings){
     const elIdA = elId.split("")[0]
     const elIdB = elId.split("")[1]
     console.log(elIdA, elIdB)
-    idInt =  elIdA.toLowerCase().charCodeAt(0) - 97 + elIdB.toLowerCase().charCodeAt(0) - 97 ;
+    idInt =  (elIdA.toLowerCase().charCodeAt(0) - 97)*8 + elIdB.toLowerCase().charCodeAt(0) - 97 ;
     console.log(idInt)
     localStorage.setItem("storageData", JSON.stringify(gridData))
+    gridData[idInt].land = landType
+    gridData[idInt].territory = whosTerritory
+    gridData[idInt].buildings= thereBuildings
+    console.log(gridData[idInt])
+
 }

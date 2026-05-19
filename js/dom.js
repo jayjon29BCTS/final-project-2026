@@ -16,3 +16,4 @@ for(let i=0; i<64; i++){
 }
 
 const buildings = ["hut","lumberyard", "garden", "embassy", "port", "refinery","quarry","barracks", "multicenter", "complex", "defenseArray"]
+

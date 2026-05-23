@@ -10,7 +10,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    color: white;
+    text-align: center;
+    text-justify: center;
 }
 
 .grid {
@@ -30,5 +32,11 @@ body{
     font-size: 0.5;
     font-family: Noto serif;
 }
+.clear-btn{
+    width: 140px;
+    height:30px ;
+}
+
+
 
 

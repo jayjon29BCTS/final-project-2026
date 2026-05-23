@@ -25,18 +25,29 @@ gridForm.addEventListener("submit", (e)=>{
             const territory = document.createElement("div")
             territory.style.width = "80%"
             territory.style.height = "80%"
-            territory.style.backgroundColor = text[2]||text[1]
+            if(colors.includes(text[1])){
+                territory.style.backgroundColor = (text[1]==="white")?"gray": text[1]
+            }else{
+                territory.style.backgroundColor =  (text[1]==="white")?"gray": text[2]
+            }
             territory.classList.add("territory-marking")
+            territory.style.display = "flex"
+            territory.style.alignItems = "center"
+            territory.style.justifyContent = "center"
+            territory.style.borderRadius = "50%"
             operandEl.appendChild(territory)
                 // check for buildings
         if(buildings.includes(text[3]) || buildings.includes(text[2]) || buildings.includes(text[1])) {
-                console.log("buildings")
-                territory.textContent = text[3]||text[2]||text[1]
-                hasBuildings= territory.textContent
+                territory.innerHTML = `<p>${text[3]||text[2]||text[1]}</p>`
+                hasBuildings= text[3]||text[2]||
                 territory.classList.add("building-text")
         }
     } 
 }
+    if(colors.includes(text[4])+"army"){
+
+
+    }
     saveToStorage(operandEl.id, land, isTerritory, hasBuildings)
 })
 
@@ -51,6 +62,7 @@ function saveToStorage(elId, landType, whosTerritory, thereBuildings){
     gridData[idInt].territory = whosTerritory
     gridData[idInt].buildings= thereBuildings
     localStorage.setItem("storageData", JSON.stringify(gridData))
+    console.log(gridData)
 
 }
 function loadSaved() {
@@ -64,16 +76,23 @@ function loadSaved() {
             decompiledOperandEl.style.backgroundColor = "blue"
          }
          const territory = document.createElement("div")
-
             territory.style.width = "80%"
             territory.style.height = "80%"
-            territory.style.backgroundColor = gridData[i].territory
+            territory.style.backgroundColor = (gridData[i].territory==="white")? "gray":gridData[i].territory
+            territory.style.borderRadius = "50%"
             territory.classList.add("territory-marking")
+            territory.style.display = "flex"
+            territory.style.alignItems = "center"
+            territory.style.justifyContent = "center"
             decompiledOperandEl.appendChild(territory)
+            if(gridData[i].buildings !== "none") {
+                territory.textContent = gridData[i].buildings
+                territory.classList.add("building-text")
          
 
     }
 
+}
 }
 clearBtn.addEventListener("click", ()=>{
     gridData = []
@@ -81,5 +100,6 @@ clearBtn.addEventListener("click", ()=>{
     gridData.push({land:null, territory:"none", buildings:"none", army:false})
 }
 localStorage.setItem("storageData", JSON.stringify(gridData))
+gridGrid.innerHTML = gridCleared
 })
 

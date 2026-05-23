@@ -6,6 +6,7 @@ const yellowInfo = document.querySelector("#yellow")
 const purpleInfo = document.querySelector("#purple")
 const whiteInfo = document.querySelector("#white")
 const greenInfo = document.querySelector("#green")
+const gridGrid =  document.querySelector(".grid")
 const colorKey = [redInfo, blueInfo, greenInfo, purpleInfo, yellowInfo, whiteInfo]
 const gridForm = document.querySelector(".testing")
 const gridInput = document.querySelector("#grid-text")
@@ -84,3 +85,75 @@ function deleteOthers(element){
     return
 
 }
+gridCleared = `
+        <div class="box" id="AA"></div>
+        <div class="box" id="AB"></div>
+        <div class="box" id="AC"></div>
+        <div class="box" id="AD"></div>
+        <div class="box" id="AE"></div>
+        <div class="box" id="AF"></div>
+        <div class="box" id="AG"></div>
+        <div class="box" id="AH"></div>
+        
+        <div class="box" id="BA"></div>
+        <div class="box" id="BB"></div>
+        <div class="box" id="BC"></div>
+        <div class="box" id="BD"></div>
+        <div class="box" id="BE"></div>
+        <div class="box" id="BF"></div>
+        <div class="box" id="BG"></div>
+        <div class="box" id="BH"></div>
+
+        <div class="box" id="CA"></div>
+        <div class="box" id="CB"></div>
+        <div class="box" id="CC"></div>
+        <div class="box" id="CD"></div>
+        <div class="box" id="CE"></div>
+        <div class="box" id="CF"></div>
+        <div class="box" id="CG"></div>
+        <div class="box" id="CH"></div>
+        
+        <div class="box" id="DA"></div>
+        <div class="box" id="DB"></div>
+        <div class="box" id="DC"></div>
+        <div class="box" id="DD"></div>
+        <div class="box" id="DE"></div>
+        <div class="box" id="DF"></div>
+        <div class="box" id="DG"></div>
+        <div class="box" id="DH"></div>
+
+        <div class="box" id="EA"></div>
+        <div class="box" id="EB"></div>
+        <div class="box" id="EC"></div>
+        <div class="box" id="ED"></div>
+        <div class="box" id="EE"></div>
+        <div class="box" id="EF"></div>
+        <div class="box" id="EG"></div>
+        <div class="box" id="EH"></div>
+        
+        <div class="box" id="FA"></div>
+        <div class="box" id="FB"></div>
+        <div class="box" id="FC"></div>
+        <div class="box" id="FD"></div>
+        <div class="box" id="FE"></div>
+        <div class="box" id="FF"></div>
+        <div class="box" id="FG"></div>
+        <div class="box" id="FH"></div>
+        
+        <div class="box" id="GA"></div>
+        <div class="box" id="GB"></div>
+        <div class="box" id="GC"></div>
+        <div class="box" id="GD"></div>
+        <div class="box" id="GE"></div>
+        <div class="box" id="GF"></div>
+        <div class="box" id="GG"></div>
+        <div class="box" id="GH"></div>
+        
+        <div class="box" id="HA"></div>
+        <div class="box" id="HB"></div>
+        <div class="box" id="HC"></div>
+        <div class="box" id="HD"></div>
+        <div class="box" id="HE"></div>
+        <div class="box" id="HF"></div>
+        <div class="box" id="HG"></div>
+        <div class="box" id="HH"></div>`

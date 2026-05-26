@@ -13,10 +13,12 @@ const gridInput = document.querySelector("#grid-text")
 const colors = ["red", "blue", "green", "purple", "yellow", "white","blank"]
 let gridData = []
 for(let i=0; i<64; i++){
-    gridData.push({land:null, territory:"none", buildings:"none", army:false})
+    gridData.push({land:null, territory:"none", buildings:"none",pop:false, army:"none"})
 }
-
+const saveOne = document.querySelector("#saveOne")
 const clearBtn = document.querySelector(".clear-btn")
+const boxes = document.querySelectorAll(".box")
+
 
 const buildings = ["hut","lumberyard", "garden", "embassy", "port", "refinery","quarry","barracks", "multicenter", "complex", "defenseArray"]
 function decompileInit(int){

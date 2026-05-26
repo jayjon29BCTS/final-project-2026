@@ -51,17 +51,18 @@ gridForm.addEventListener("submit", (e)=>{
         }
         terGlobal = territory
     } 
-    if (colors.includes(text[4])) {
+        if (colors.includes(text[4])) {
+            armyCol = text[4]
         deleteOthers(operandEl)
         terGlobal.style.border = `10px solid ${text[4]}`
     }
     operandEl.appendChild(terGlobal)
     }
-    saveToStorage(operandEl.id, land, isTerritory, hasBuildings)
+    saveToStorage(operandEl.id, land, isTerritory, hasBuildings,buildingPop)
 })
 
 
-function saveToStorage(elId, landType, whosTerritory, thereBuildings){
+function saveToStorage(elId, landType, whosTerritory, thereBuildings,populated){
     const elIdA = elId.split("")[0]
     const elIdB = elId.split("")[1]
     console.log(elIdA, elIdB)
@@ -69,12 +70,13 @@ function saveToStorage(elId, landType, whosTerritory, thereBuildings){
     console.log(idInt)
     gridData[idInt].land = landType
     gridData[idInt].territory = whosTerritory
-    gridData[idInt].buildings= thereBuildings
+    gridData[idInt].buildings = thereBuildings
+    gridData[idInt].pop = populated
     localStorage.setItem("storageData", JSON.stringify(gridData))
     console.log(gridData)
 
 }
-function saveToStorageMan(elId, landType, whosTerritory, thereBuildings){
+function saveToStorageMan(elId, landType, whosTerritory, thereBuildings,populated,armyColor){
     const elIdA = elId.split("")[0]
     const elIdB = elId.split("")[1]
     console.log(elIdA, elIdB)
@@ -82,7 +84,10 @@ function saveToStorageMan(elId, landType, whosTerritory, thereBuildings){
     console.log(idInt)
     gridData[idInt].land = landType
     gridData[idInt].territory = whosTerritory
-    gridData[idInt].buildings= thereBuildings
+    gridData[idInt].buildings = thereBuildings
+    gridData[idInt].army = armyColor
+
+
     localStorage.setItem("storageDataOne", JSON.stringify(gridData))
 
 }
@@ -113,11 +118,20 @@ function loadSaved(storage) {
         territory.style.display = "flex"
         territory.style.alignItems = "center"
         territory.style.justifyContent = "center"
+        if (gridData[i].pop) {
+            territory.style.color = "white"
+        } else {
+            territory.style.color = "black"
+        }
+        if (gridData[i].army !== "none") {
+            territory.style.border = `10px solid ${gridData[i].army}` 
+        }
         decompiledOperandEl.appendChild(territory)
         if (gridData[i].buildings !== "none") {
             territory.textContent = gridData[i].buildings
             territory.classList.add("building-text")
         }
+        
     }
 }
 clearBtn.addEventListener("click", ()=>{

@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
 
+* {
+    font-family: Noto Serif;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border-color: black;
+    display: grid;
+    grid-template-columns: 2fr;
+}
+
 .factions-current {
     font-family: Noto Serif;
     margin: 20px;
@@ -8,3 +18,11 @@
     display: grid;
     grid-template-columns: 2fr;
 }
+
+.homebrew {
+    margin: 15px;
+    padding: 20px;
+    border-radius: 2.5px;
+    display: block;
+}
+

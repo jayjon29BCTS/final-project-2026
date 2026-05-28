@@ -58,11 +58,11 @@ gridForm.addEventListener("submit", (e)=>{
     }
     operandEl.appendChild(terGlobal)
     }
-    saveToStorage(operandEl.id, land, isTerritory, hasBuildings,buildingPop)
+    saveToStorage(operandEl.id, land, isTerritory, hasBuildings,buildingPop,armyCol)
 })
 
 
-function saveToStorage(elId, landType, whosTerritory, thereBuildings,populated){
+function saveToStorage(elId, landType, whosTerritory, thereBuildings,populated,armyColor){
     const elIdA = elId.split("")[0]
     const elIdB = elId.split("")[1]
     console.log(elIdA, elIdB)
@@ -72,8 +72,8 @@ function saveToStorage(elId, landType, whosTerritory, thereBuildings,populated){
     gridData[idInt].territory = whosTerritory
     gridData[idInt].buildings = thereBuildings
     gridData[idInt].pop = populated
+    gridData[idInt].army = armyColor
     localStorage.setItem("storageData", JSON.stringify(gridData))
-    console.log(gridData)
 
 }
 function saveToStorageMan(elId, landType, whosTerritory, thereBuildings,populated,armyColor){
@@ -85,20 +85,43 @@ function saveToStorageMan(elId, landType, whosTerritory, thereBuildings,populate
     gridData[idInt].land = landType
     gridData[idInt].territory = whosTerritory
     gridData[idInt].buildings = thereBuildings
+    gridData[idInt].pop = populated
     gridData[idInt].army = armyColor
-
-
-    localStorage.setItem("storageDataOne", JSON.stringify(gridData))
+    localStorage.setItem("storageDataMan", JSON.stringify(gridData))
 
 }
-let repCount = 0
-saveOne.addEventListener("click", ()=>{
-    boxes.forEach((box)=>{
-        if(box.style.backgroundColor == "rgb(113, 251, 138)"){
-
+saveOne.addEventListener("click", () => {
+    boxes.forEach((box) => {
+        let landType = null
+        let terrCol = "none"
+        let building = "none"
+        let pop = false
+        let army = "none"
+        
+        if (box.style.backgroundColor === "blue") {
+            landType = false
+        } else if (box.style.backgroundColor === "rgb(113, 251, 138)") {
+            land = true
         }
-    })
+            console.log(landType)
+        const territoryCircle = box.querySelector(".territory-marking")
+        if (colors.includes(territoryCircle.style.backgroundColor)) {
+            terrCol = territoryCircle.style.backgroundColor
+        
+            if (territoryCircle.textContent !== "") {
+                console.log(territoryCircle.textContent)
+                if (territoryCircle.style.color !== "black") {
+                    
+                }
+            }
+        }
+        if (territoryCircle.style.border == `10px solid ${colors[0 || 1 || 2 || 3 || 4 || 5]} `) {
+            console.log(territoryCircle.style.borderColor)
+        }
+    })        // saveToStorage(box.id, terrCol)
 })
+
+
 function loadSaved(storage) {
     const rawGridInitial = JSON.parse(localStorage.getItem(storage))
     gridData = rawGridInitial ?? gridData

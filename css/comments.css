@@ -1,28 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
-    font-family: Noto Serif;
     margin: 20px;
     padding: 10px;
-    border-radius: 5px;
-    border-color: black;
-    display: grid;
-    grid-template-columns: 2fr;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Noto Serif;
+    background-color: beige;
+    color: #000030;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
 }
 
 .factions-current {
-    font-family: Noto Serif;
-    margin: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    display: grid;
-    grid-template-columns: 2fr;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 2rem;
 }
 
-.homebrew {
-    margin: 15px;
+.faction-card {
+    padding: 20px 10px;
+    text-align: center;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    background-color: #ff32;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+#red-card {
+    background-color: red;
+}
+
+#blue-card {
+    background-color: blue;
+}
+
+#green-card {
+    background-color: green;
+}
+
+#purple-card {
+    background-color: purple;
+}
+
+#yellow-card {
+    background-color: yellow;
+}
+
+#white-card {
+    background-color: whitesmoke;
+}
+
+.homebrew, .adding {
+    width: 100%;
+    background: rgb(244, 244, 196);
+    border-radius: 8px;
     padding: 20px;
-    border-radius: 2.5px;
-    display: block;
+    margin-bottom: 1.5rem;
+    border: 1px solid black;
 }
-

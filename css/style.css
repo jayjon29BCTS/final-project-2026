@@ -20,9 +20,10 @@
     flex-direction: column;
     gap: 60px;
 }
-.subheading{
+.subheading{    
     font-family: Noto Serif;
     text-align: center;
+    
 }
 
 .toolbar{

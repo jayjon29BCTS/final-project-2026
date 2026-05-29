@@ -70,3 +70,18 @@ body {
     margin-bottom: 1.5rem;
     border: 1px solid black;
 }
+
+.links {
+    margin-top: auto;
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.links a {
+    color: #000030;
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 8px 16px;
+    border: 1px solid bla;
+}

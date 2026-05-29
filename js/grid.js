@@ -58,71 +58,58 @@ gridForm.addEventListener("submit", (e)=>{
     }
     operandEl.appendChild(terGlobal)
     }
-    saveToStorage(operandEl.id, land, isTerritory, hasBuildings,buildingPop,armyCol)
+    saveToStorage(operandEl.id, land, isTerritory, hasBuildings, buildingPop, armyCol, "storageData")
 })
 
 
-function saveToStorage(elId, landType, whosTerritory, thereBuildings,populated,armyColor){
-    const elIdA = elId.split("")[0]
-    const elIdB = elId.split("")[1]
-    console.log(elIdA, elIdB)
-    idInt =  (elIdA.toLowerCase().charCodeAt(0) - 97)*8 + elIdB.toLowerCase().charCodeAt(0) - 97 ;
-    console.log(idInt)
-    gridData[idInt].land = landType
-    gridData[idInt].territory = whosTerritory
-    gridData[idInt].buildings = thereBuildings
-    gridData[idInt].pop = populated
-    gridData[idInt].army = armyColor
-    localStorage.setItem("storageData", JSON.stringify(gridData))
 
-}
-function saveToStorageMan(elId, landType, whosTerritory, thereBuildings,populated,armyColor){
+function saveToStorage(elId, landType, whosTerritory, thereBuildings,populated,armyColor, data){
     const elIdA = elId.split("")[0]
     const elIdB = elId.split("")[1]
-    console.log(elIdA, elIdB)
     idInt =  (elIdA.toLowerCase().charCodeAt(0) - 97)*8 + elIdB.toLowerCase().charCodeAt(0) - 97 ;
-    console.log(idInt)
     gridData[idInt].land = landType
     gridData[idInt].territory = whosTerritory
     gridData[idInt].buildings = thereBuildings
     gridData[idInt].pop = populated
     gridData[idInt].army = armyColor
-    localStorage.setItem("storageDataMan", JSON.stringify(gridData))
+    localStorage.setItem(data, JSON.stringify(gridData))
 
 }
 saveOne.addEventListener("click", () => {
+    console.log("clicked")
     boxes.forEach((box) => {
         let landType = null
         let terrCol = "none"
         let building = "none"
         let pop = false
         let army = "none"
-        
-        if (box.style.backgroundColor === "blue") {
-            landType = false
-        } else if (box.style.backgroundColor === "rgb(113, 251, 138)") {
-            land = true
+        if (box.style.backgroundColor == "rgb(113, 251, 138)") {
+            landType = true
+        }  if (box.style.backgroundColor == "blue") {
+            land = false
         }
-            console.log(landType)
-        const territoryCircle = box.querySelector(".territory-marking")
-        if (colors.includes(territoryCircle.style.backgroundColor)) {
-            terrCol = territoryCircle.style.backgroundColor
+        console.log(typeof box)
+        const territoryCircle = box.querySelector("div")=null?box.querySelector("div"):"undefined"
+            if (colors.includes(territoryCircle.style.backgroundColor) || territoryCircle.style.backgroundColor == "gray") {
+                terrCol = (territoryCircle.style.backgroundColor != "gray") ? territoryCircle.style.backgroundColor : "white"
         
-            if (territoryCircle.textContent !== "") {
-                console.log(territoryCircle.textContent)
-                if (territoryCircle.style.color !== "black") {
-                    
+                if (territoryCircle.textContent !== "") {
+                    if (territoryCircle.style.color !== "black") {
+                        pop = true
+                    }
                 }
             }
-        }
-        if (territoryCircle.style.border == `10px solid ${colors[0 || 1 || 2 || 3 || 4 || 5]} `) {
-            console.log(territoryCircle.style.borderColor)
-        }
-    })        // saveToStorage(box.id, terrCol)
+        
+            if (colors.includes(territoryCircle.style.borderColor)) {
+                army = territoryCircle.style.borderColor
+            }
+        saveToStorage(box.id, landType,terrCol,building,pop,army,"storageOne")
+    })         
 })
 
 
 function loadSaved(storage) {
+    gridGrid.innerHTML=gridCleared
     const rawGridInitial = JSON.parse(localStorage.getItem(storage))
     gridData = rawGridInitial ?? gridData
     for (let i = 0; i < gridData.length; i++) {
@@ -149,11 +136,10 @@ function loadSaved(storage) {
         if (gridData[i].army !== "none") {
             territory.style.border = `10px solid ${gridData[i].army}` 
         }
-        decompiledOperandEl.appendChild(territory)
         if (gridData[i].buildings !== "none") {
             territory.textContent = gridData[i].buildings
-            territory.classList.add("building-text")
         }
+        decompiledOperandEl.appendChild(territory)
         
     }
 }

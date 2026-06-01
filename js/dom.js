@@ -6,21 +6,21 @@ const yellowInfo = document.querySelector("#yellow")
 const purpleInfo = document.querySelector("#purple")
 const whiteInfo = document.querySelector("#white")
 const greenInfo = document.querySelector("#green")
-const gridGrid =  document.querySelector(".grid")
+const gridGrid = document.querySelector(".grid")
+const radios = document.querySelectorAll(".toggle-radio")
+const armyRad = document.querySelectorAll(".army-radio")
 const colorKey = [redInfo, blueInfo, greenInfo, purpleInfo, yellowInfo, whiteInfo]
 const gridForm = document.querySelector(".testing")
-const gridInput = document.querySelector("#grid-text")
-const colors = ["red", "blue", "green", "purple", "yellow", "white","blank"]
+const colors = ["red", "blue", "green", "purple", "yellow", "white","none"]
 let gridData = []
 for(let i=0; i<64; i++){
     gridData.push({land:null, territory:"none", buildings:"none",pop:false, army:"none"})
 }
 const saveOne = document.querySelector("#saveOne")
 const clearBtn = document.querySelector(".clear-btn")
-const boxes = document.querySelectorAll(".box")
 
 
-const buildings = ["hut","lumberyard", "garden", "embassy", "port", "refinery","quarry","barracks", "multicenter", "complex", "defenseArray"]
+
 function decompileInit(int){
    const charOne = Math.floor(int/8)
    const charTwo = int%8

@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
 
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
 .box {
     width: 1fr;
     height: 1fr;
@@ -13,6 +19,19 @@
     color: white;
     text-align: center;
     text-justify: center;
+}
+
+.session-heading h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.testing {
+    background-color: black;
+    border: 1px solid black;
+    bord
+
 }
 
 .grid {
@@ -35,6 +54,9 @@ body{
 .clear-btn{
     width: 140px;
     height:30px ;
+}
+.territory-marking{
+    font-size: 20px;
 }
 
 

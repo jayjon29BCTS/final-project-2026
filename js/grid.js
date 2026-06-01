@@ -1,30 +1,43 @@
 
 loadSaved("storageData")
+const boxes = document.querySelectorAll(".box")
 gridForm.addEventListener("submit", (e)=>{
     e.preventDefault()
-    let rawText = gridInput.value
-    const text = rawText.split(" ")
-    operandint = text[1]
+    let terrVal="none"
+    radios.forEach((button) => {
+        if (button.checked) {
+            terrVal = button.value
+        }
+    })
+    let armyVal="none"
+    armyRad.forEach((button) => {
+        if (button.checked) {
+            armyVal = button.value
+        }
+    })
+    text = [document.querySelector("#row-selector").value+document.querySelector("#col-selector").value,document.querySelector("#land-check").checked, terrVal,document.querySelector("#building").value,armyVal,document.querySelector("#pop-check").checked]
+    console.log(text)
     const operandEl = document.querySelector(`#${text[0].toUpperCase()}`)
     let isTerritory = "none"
     let hasBuildings = "none"
     let land = null
     let terGlobal = null
     let buildingPop = false
+    let armyCol = "none"
 
     // check for land type
-    if(text[1] === "land") {
+    if(text[1]) {
         operandEl.style.backgroundColor = "rgb(113, 251, 138)"
         land = true
-    } else if(text[1]==="sea") {
+    } else if(!text[1]) {
         operandEl.style.backgroundColor = "blue"
         land = false
     }
     // check for territory
-    if(colors.includes(text[2]) && (text[1]!=="sea")) {
+    if(document.querySelector("#land-check").checked == true) {
         isTerritory=text[2]
         deleteOthers(operandEl)
-    if (isTerritory!=="blank"){
+    if (isTerritory!=="none"){
         const territory = document.createElement("div")
         territory.style.width = "80%"
         territory.style.height = "80%"
@@ -34,13 +47,12 @@ gridForm.addEventListener("submit", (e)=>{
         territory.style.alignItems = "center"
         territory.style.justifyContent = "center"
         territory.style.borderRadius = "50%"
-        territory.style.fontSize = "20px"
         // check for buildings
-        if(buildings.includes(text[3])) {
+        if(text[2]!=="none") {
             territory.innerHTML = `<p>${text[3]}</p>`
-            hasBuildings= text[3]||text[2]||text[1]
+            hasBuildings= text[3]
             territory.classList.add("building-text")
-            if (text[5] == "y") {
+            if (text[5] == true) {
                 buildingPop = true
                 territory.style.color = "beige"
             } else {
@@ -48,8 +60,9 @@ gridForm.addEventListener("submit", (e)=>{
                 territory.style.color = "black"
             }
             
+            
+            terGlobal = territory
         }
-        terGlobal = territory
     } 
         if (colors.includes(text[4])) {
             armyCol = text[4]
@@ -76,7 +89,6 @@ function saveToStorage(elId, landType, whosTerritory, thereBuildings,populated,a
 
 }
 saveOne.addEventListener("click", () => {
-    console.log("clicked")
     boxes.forEach((box) => {
         let landType = null
         let terrCol = "none"
@@ -88,8 +100,7 @@ saveOne.addEventListener("click", () => {
         }  if (box.style.backgroundColor == "blue") {
             land = false
         }
-        console.log(typeof box)
-        const territoryCircle = box.querySelector("div")=null?box.querySelector("div"):"undefined"
+        const territoryCircle = box.querySelector(".territory-marking")
             if (colors.includes(territoryCircle.style.backgroundColor) || territoryCircle.style.backgroundColor == "gray") {
                 terrCol = (territoryCircle.style.backgroundColor != "gray") ? territoryCircle.style.backgroundColor : "white"
         
@@ -97,6 +108,7 @@ saveOne.addEventListener("click", () => {
                     if (territoryCircle.style.color !== "black") {
                         pop = true
                     }
+                    building = territoryCircle.textContent
                 }
             }
         

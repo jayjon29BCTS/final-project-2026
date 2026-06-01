@@ -11,12 +11,66 @@
 </head>
 <body>
     <div class="session-heading">
-        <h3>Welcome to the current session</h3>
+        <h3>This is Victorium</h3>
     </div>
     <form class="testing" >
-        <input type="text" name="" id="grid-text" autocorrect="off">
-        <input type="submit" value="">
-        <label for="submit"></label>
+
+        <select name="row" id="row-selector">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="E">E</option>
+        <option value="F">F</option>
+        <option value="G">G</option>
+        <option value="H">H</option>
+        </select>
+        <select name="col" id="col-selector">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="E">E</option>
+        <option value="F">F</option>
+        <option value="G">G</option>
+        <option value="H">H</option>
+        </select>
+        <input type="checkbox" name="land-check" id="land-check" >
+        <input type="radio" name="territory" value="red"    id="red" class="toggle-radio">
+        <input type="radio" name="territory" value="blue"   id="blue" class="toggle-radio">
+        <input type="radio" name="territory" value="green"  id="green" class="toggle-radio">
+        <input type="radio" name="territory" value="purple" id="purple" class="toggle-radio">
+        <input type="radio" name="territory" value="yellow" id="yellow" class="toggle-radio">
+        <input type="radio" name="territory" value="white"  id="white" class="toggle-radio">
+        <input type="radio" name="territory" value="none"   id="none" class="toggle-radio">
+        <hr>
+        <select name="building" id="building">
+        <option value="hut">hut</option>
+        <option value="lumberyard">lumberyard</option>
+        <option value="garden">garden</option>
+        <option value="embassy">embassy</option>
+        <option value="port">port</option>
+        <option value="refinery">refinery</option>
+        <option value="quarry">quarry</option>
+        <option value="barracks">barracks</option>
+        <option value="multicenter">multicenter</option>
+        <option value="complex">complex</option>
+        <option value="defenseArray">defense Array</option>
+        <option value="city">city</option>
+        
+        <!-- const buildings = ["hut","lumberyard", "garden", "embassy", "port", "refinery","quarry","barracks", " ", "complex", "defenseArray"]
+ -->
+        <input type="radio" name="army-radio" value="red"    id="red" class="army-radio">
+        <input type="radio" name="army-radio" value="blue"   id="blue" class="army-radio">
+        <input type="radio" name="army-radio" value="green"  id="green" class="army-radio">
+        <input type="radio" name="army-radio" value="purple" id="purple" class="army-radio">
+        <input type="radio" name="army-radio" value="yellow" id="yellow" class="army-radio">
+        <input type="radio" name="army-radio" value="white"  id="white" class="army-radio">
+        <input type="radio" name="army-radio" value="none"   id="none" class="army-radio">
+        <input type="checkbox" name="pop-check" id="pop-check" checked>
+
+        </select>
+        <input type="submit" name="submit" id="submit">
     </form>
     <div class="grid">
         <div class="box" id="AA"></div>

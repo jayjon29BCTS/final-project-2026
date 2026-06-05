@@ -11,6 +11,7 @@ const radios = document.querySelectorAll(".toggle-radio")
 const armyRad = document.querySelectorAll(".army-radio")
 const colorKey = [redInfo, blueInfo, greenInfo, purpleInfo, yellowInfo, whiteInfo]
 const gridForm = document.querySelector(".testing")
+const loadSaveOne = document.querySelector("#loadSaveOne")
 const colors = ["red", "blue", "green", "purple", "yellow", "white","none"]
 let gridData = []
 for(let i=0; i<64; i++){
@@ -159,3 +160,54 @@ gridCleared = `
         <div class="box" id="HF"></div>
         <div class="box" id="HG"></div>
         <div class="box" id="HH"></div>`
+
+
+radios.forEach((button) => {
+    button.addEventListener("click", () => {
+        radios.forEach((button) => {
+            if (button.checked) {
+                button.style.accentColor = (button.value=="white")?"gray":button.value
+            }
+        })
+    })    
+        
+})
+armyRad.forEach((button) => {
+    button.addEventListener("click", () => {
+        armyRad.forEach((button) => {
+            if (button.checked) {
+                button.style.accentColor = (button.value=="white")?"gray":button.value
+            }
+        })
+    })
+})
+function setStorage(set) {
+        boxes.forEach((box) => {
+        let landType = null
+        let terrCol = "none"
+        let building = "none"
+        let pop = false
+        let army = "none"
+        if (box.style.backgroundColor == "rgb(113, 251, 138)") {
+            landType = true
+        }  if (box.style.backgroundColor == "blue") {
+            landType = false
+        }
+        const territoryCircle = box.querySelector(".territory-marking")
+            if (colors.includes(territoryCircle.style.backgroundColor) || territoryCircle.style.backgroundColor == "gray") {
+                terrCol = (territoryCircle.style.backgroundColor != "gray") ? territoryCircle.style.backgroundColor : "white"
+        
+                if (territoryCircle.textContent !== "") {
+                    if (territoryCircle.style.color !== "black") {
+                        pop = true
+                    }
+                    building = territoryCircle.textContent
+                }
+            }
+        
+            if (colors.includes(territoryCircle.style.borderColor)) {
+                army = territoryCircle.style.borderColor
+            }
+        saveToStorage(box.id, landType,terrCol,building,pop,army,set)
+    })         
+}

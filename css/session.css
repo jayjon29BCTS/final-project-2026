@@ -27,11 +27,18 @@
     letter-spacing: 1px;
 }
 
-.testing {
-    background-color: black;
-    border: 1px solid black;
-    bord
 
+.testing {
+    box-sizing: border-box;
+    display: flexbox;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+#submit {
+    font-family: Noto serif;
+    color: black;
+    
 }
 
 .grid {
@@ -58,7 +65,5 @@ body{
 .territory-marking{
     font-size: 20px;
 }
-
-
 
 

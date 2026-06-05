@@ -21,9 +21,10 @@ gridForm.addEventListener("submit", (e)=>{
     let isTerritory = "none"
     let hasBuildings = "none"
     let land = null
-    let terGlobal = null
+    let terGlobal = document.createElement("div")
     let buildingPop = false
     let armyCol = "none"
+    deleteOthers(operandEl)
 
     // check for land type
     if(text[1]) {
@@ -33,44 +34,52 @@ gridForm.addEventListener("submit", (e)=>{
         operandEl.style.backgroundColor = "blue"
         land = false
     }
-    // check for territory
-    if(document.querySelector("#land-check").checked == true) {
+    // check for terGlobal
+    if(document.querySelector("#land-check").checked ) {
         isTerritory=text[2]
-        deleteOthers(operandEl)
     if (isTerritory!=="none"){
-        const territory = document.createElement("div")
-        territory.style.width = "80%"
-        territory.style.height = "80%"
-        territory.style.backgroundColor = (text[2]==="white")?"gray": text[2]
-        territory.classList.add("territory-marking")
-        territory.style.display = "flex"
-        territory.style.alignItems = "center"
-        territory.style.justifyContent = "center"
-        territory.style.borderRadius = "50%"
+        terGlobal.style.width = "80%"
+        terGlobal.style.height = "80%"
+        terGlobal.style.backgroundColor = (text[2]==="white")?"gray": text[2]
+        terGlobal.classList.add("territory-marking")
+        terGlobal.style.display = "flex"
+        terGlobal.style.alignItems = "center"
+        terGlobal.style.justifyContent = "center"
+        terGlobal.style.borderRadius = "50%"
+        
         // check for buildings
-        if(text[2]!=="none") {
-            territory.innerHTML = `<p>${text[3]}</p>`
+        if(text[3]!=="none") {
+            terGlobal.innerHTML = `<p>${text[3]}</p>`
             hasBuildings= text[3]
-            territory.classList.add("building-text")
+            terGlobal.classList.add("building-text")
             if (text[5] == true) {
                 buildingPop = true
-                territory.style.color = "beige"
+                terGlobal.style.color = "beige"
             } else {
                 buildingPop = false
-                territory.style.color = "black"
+                terGlobal.style.color = "black"
             }
             
             
-            terGlobal = territory
-        }
-    } 
-        if (colors.includes(text[4])) {
-            armyCol = text[4]
-        deleteOthers(operandEl)
-        terGlobal.style.border = `10px solid ${text[4]}`
+        } 
+    } else {
+        terGlobal = document.createElement("div")
+        terGlobal.style.width = "80%"
+        terGlobal.style.height = "80%"
+        terGlobal.classList.add("territory-marking")
+        terGlobal.style.display = "flex"
+        terGlobal.style.alignItems = "center"
+        terGlobal.style.justifyContent = "center"
+        terGlobal.style.borderRadius = "50%"
+          
     }
+    console.log(terGlobal)
+    armyCol = text[4]
+    deleteOthers(operandEl)
+    terGlobal.style.border =`10px solid ${(text[4]!=="none")?text[4]:"rgb(113, 251, 138)"}`
+    
     operandEl.appendChild(terGlobal)
-    }
+    } 
     saveToStorage(operandEl.id, land, isTerritory, hasBuildings, buildingPop, armyCol, "storageData")
 })
 
@@ -89,34 +98,7 @@ function saveToStorage(elId, landType, whosTerritory, thereBuildings,populated,a
 
 }
 saveOne.addEventListener("click", () => {
-    boxes.forEach((box) => {
-        let landType = null
-        let terrCol = "none"
-        let building = "none"
-        let pop = false
-        let army = "none"
-        if (box.style.backgroundColor == "rgb(113, 251, 138)") {
-            landType = true
-        }  if (box.style.backgroundColor == "blue") {
-            land = false
-        }
-        const territoryCircle = box.querySelector(".territory-marking")
-            if (colors.includes(territoryCircle.style.backgroundColor) || territoryCircle.style.backgroundColor == "gray") {
-                terrCol = (territoryCircle.style.backgroundColor != "gray") ? territoryCircle.style.backgroundColor : "white"
-        
-                if (territoryCircle.textContent !== "") {
-                    if (territoryCircle.style.color !== "black") {
-                        pop = true
-                    }
-                    building = territoryCircle.textContent
-                }
-            }
-        
-            if (colors.includes(territoryCircle.style.borderColor)) {
-                army = territoryCircle.style.borderColor
-            }
-        saveToStorage(box.id, landType,terrCol,building,pop,army,"storageOne")
-    })         
+    setStorage("storageOne")
 })
 
 
@@ -131,29 +113,32 @@ function loadSaved(storage) {
         } else if (gridData[i].land == false) {
             decompiledOperandEl.style.backgroundColor = "blue"
         }
-        const territory = document.createElement("div")
-        territory.style.width = "80%"
-        territory.style.height = "80%"
-        territory.style.backgroundColor = (gridData[i].territory === "white") ? "gray" : gridData[i].territory
-        territory.style.borderRadius = "50%"
-        territory.classList.add("territory-marking")
-        territory.style.display = "flex"
-        territory.style.alignItems = "center"
-        territory.style.justifyContent = "center"
+        const terGlobal = document.createElement("div")
+        terGlobal.style.width = "80%"
+        terGlobal.style.height = "80%"
+        terGlobal.style.backgroundColor = (gridData[i].territory === "white") ? "gray" : gridData[i].territory
+        terGlobal.style.borderRadius = "50%"
+        terGlobal.classList.add("territory-marking")
+        terGlobal.style.display = "flex"
+        terGlobal.style.alignItems = "center"
+        terGlobal.style.justifyContent = "center"
         if (gridData[i].pop) {
-            territory.style.color = "white"
+            terGlobal.style.color = "white"
         } else {
-            territory.style.color = "black"
+            terGlobal.style.color = "black"
         }
         if (gridData[i].army !== "none") {
-            territory.style.border = `10px solid ${gridData[i].army}` 
+            terGlobal.style.border = `10px solid ${gridData[i].army}` 
+        } else if(gridData[i].land) {
+            terGlobal.style.border =`10px solid rgb(113, 251, 138)` 
         }
         if (gridData[i].buildings !== "none") {
-            territory.textContent = gridData[i].buildings
+            terGlobal.textContent = gridData[i].buildings
         }
-        decompiledOperandEl.appendChild(territory)
+        decompiledOperandEl.appendChild(terGlobal)
         
     }
+    
 }
 clearBtn.addEventListener("click", ()=>{
     gridData = []
@@ -162,5 +147,10 @@ clearBtn.addEventListener("click", ()=>{
 }
 localStorage.setItem("storageData", JSON.stringify(gridData))
 gridGrid.innerHTML = gridCleared
+})
+loadSaveOne.addEventListener("click", () => {
+    loadSaved("storageOne")
+    setStorage("storageData")
+    
 })
 

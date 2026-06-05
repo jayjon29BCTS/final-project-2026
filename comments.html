@@ -6,23 +6,26 @@
     <title>Responses</title>
     <link rel="stylesheet" href="css/comments.css">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="js/dom.js" defer></script>
     <script src="js/script.js" defer></script>
 </head>
 <body>
-    <div class="factions-current">
-        <button class="faction-card" id="red-card">Red</button>
-        <button class="faction-card" id="blue-card">Blue</button>
-        <button class="faction-card" id="green-card">Green</button>
-        <button class="faction-card" id="purple-card">Purple</button>
-        <button class="faction-card" id="yellow-card">Yellow</button>
-        <button class="faction-card" id="white-card">White</button>
+    <div class="factions-current btn-group">
+        <div class="faction-card btn-primary" id="red-card">Red</div>
+        <div class="faction-card btn-primary" id="blue-card">Blue</div>
+        <div class="faction-card btn-primary" id="green-card">Green</div>
+        <div class="faction-card btn-primary" id="purple-card">Purple</div>
+        <div class="faction-card btn-primary" id="yellow-card">Yellow</div>
+        <div class="faction-card btn-primary" id="white-card">White</div>
     </div>
-    <div class="homebrew">
-        
+    <div class="homebrew input-group">
+        <span class="input-group-text">Homebrew:</span>
+        <textarea class="form-control" aria-label="Homebrew"></textarea>
     </div>
-    <div class="adding">
-
+    <div class="adding input-group">
+        <span class="input-group-text">Comments:</span>
+        <textarea class="input-group-text" aria-label="comments"></textarea>
     </div>
     <div class="links">
             <a href="session.html">Go to the current session</a>

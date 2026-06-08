@@ -49,7 +49,7 @@ gridForm.addEventListener("submit", (e)=>{
         
             // check for buildings
             if (text[3] !== "none") {
-                terGlobal.innerHTML = `<p>${text[3]}</p>`
+                terGlobal.innerHTML = `<img src =">`
                 hasBuildings = text[3]
                 terGlobal.classList.add("building-text")
                 if (text[5] == true) {

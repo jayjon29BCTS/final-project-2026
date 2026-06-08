@@ -11,14 +11,19 @@ const radios = document.querySelectorAll(".toggle-radio")
 const armyRad = document.querySelectorAll(".army-radio")
 const colorKey = [redInfo, blueInfo, greenInfo, purpleInfo, yellowInfo, whiteInfo]
 const gridForm = document.querySelector(".testing")
-const loadSaveOne = document.querySelector("#loadSaveOne")
 const colors = ["red", "blue", "green", "purple", "yellow", "white","none"]
 let gridData = []
 for(let i=0; i<64; i++){
     gridData.push({land:null, territory:"none", buildings:"none",pop:false, army:"none"})
 }
 const saveOne = document.querySelector("#saveOne")
+const loadSaveOne = document.querySelector("#loadSaveOne")
+const saveTwo = document.querySelector("#saveTwo")
+const loadSaveTwo = document.querySelector("#loadSaveTwo")
+const saveThree = document.querySelector("#saveThree")
+const loadSaveThree = document.querySelector("#loadSaveThree")
 const clearBtn = document.querySelector(".clear-btn")
+
 
 
 
@@ -187,14 +192,14 @@ function setStorage(set) {
         let terrCol = "none"
         let building = "none"
         let pop = false
-        let army = "none"
+            let army = "none"
+    
         if (box.style.backgroundColor == "rgb(113, 251, 138)") {
             landType = true
         }  if (box.style.backgroundColor == "blue") {
             landType = false
         }
-        const territoryCircle = box.querySelector(".territory-marking")
-            if (colors.includes(territoryCircle.style.backgroundColor) || territoryCircle.style.backgroundColor == "gray") {
+            let territoryCircle = box.querySelector(".territory-marking")
                 terrCol = (territoryCircle.style.backgroundColor != "gray") ? territoryCircle.style.backgroundColor : "white"
         
                 if (territoryCircle.textContent !== "") {
@@ -203,11 +208,44 @@ function setStorage(set) {
                     }
                     building = territoryCircle.textContent
                 }
-            }
         
-            if (colors.includes(territoryCircle.style.borderColor)) {
-                army = territoryCircle.style.borderColor
-            }
+            army = territoryCircle.style.borderColor
+            (box.id, landType,terrCol,building,pop,army,set)
+        
         saveToStorage(box.id, landType,terrCol,building,pop,army,set)
     })         
 }
+const buildingChange = document.querySelector("#building")
+const landCheck = document.querySelector("#land-check")
+const landCheckLabel = document.querySelector("#land-check-label")
+landCheck.addEventListener("click", () => {
+    console.log(landCheckLabel.classList)
+    landCheckLabel.classList.remove("btn-outline-success")
+    landCheckLabel.classList.remove("btn-outline-primary")
+    if (landCheck.checked) {
+        console.log("land")
+        landCheckLabel.innerHTML = "Land"
+        landCheckLabel.classList.add("btn-outline-success")
+        buildingChange.innerHTML = `
+            <option value="none">none</option>
+            <option value="hut">hut</option>
+            <option value="lumberyard">lumberyard</option>
+            <option value="garden">garden</option>
+            <option value="embassy">embassy</option>
+            <option value="refinery">refinery</option>
+            <option value="quarry">quarry</option>
+            <option value="barracks">barracks</option>
+            <option value="multicenter">multicenter</option>
+            <option value="complex">complex</option>
+            <option value="defenseArray">defense Array</option>
+            <option value="city">city</option>`
+    } else {
+        console.log("sea")
+        landCheckLabel.innerHTML = "sea"
+        landCheckLabel.classList.add("btn-outline-primary")
+        buildingChange.innerHTML = `
+        <option value="none">none</option>
+        <option value="docks">Docks</option>
+            <option value="port">port</option>`
+    }
+})

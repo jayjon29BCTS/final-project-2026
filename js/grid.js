@@ -15,8 +15,8 @@ gridForm.addEventListener("submit", (e)=>{
             armyVal = button.value
         }
     })
+    console.log(armyVal)
     text = [document.querySelector("#row-selector").value+document.querySelector("#col-selector").value,document.querySelector("#land-check").checked, terrVal,document.querySelector("#building").value,armyVal,document.querySelector("#pop-check").checked]
-    console.log(text)
     const operandEl = document.querySelector(`#${text[0].toUpperCase()}`)
     let isTerritory = "none"
     let hasBuildings = "none"
@@ -35,33 +35,67 @@ gridForm.addEventListener("submit", (e)=>{
         land = false
     }
     // check for terGlobal
-    if(document.querySelector("#land-check").checked ) {
-        isTerritory=text[2]
-    if (isTerritory!=="none"){
-        terGlobal.style.width = "80%"
-        terGlobal.style.height = "80%"
-        terGlobal.style.backgroundColor = (text[2]==="white")?"gray": text[2]
-        terGlobal.classList.add("territory-marking")
-        terGlobal.style.display = "flex"
-        terGlobal.style.alignItems = "center"
-        terGlobal.style.justifyContent = "center"
-        terGlobal.style.borderRadius = "50%"
+    if (document.querySelector("#land-check").checked) {
+        isTerritory = text[2]
+        if (isTerritory !== "none") {
+            terGlobal.style.width = "80%"
+            terGlobal.style.height = "80%"
+            terGlobal.style.backgroundColor = (text[2] === "white") ? "gray" : text[2]
+            terGlobal.classList.add("territory-marking")
+            terGlobal.style.display = "flex"
+            terGlobal.style.alignItems = "center"
+            terGlobal.style.justifyContent = "center"
+            terGlobal.style.borderRadius = "50%"
         
-        // check for buildings
-        if(text[3]!=="none") {
-            terGlobal.innerHTML = `<p>${text[3]}</p>`
-            hasBuildings= text[3]
-            terGlobal.classList.add("building-text")
-            if (text[5] == true) {
-                buildingPop = true
-                terGlobal.style.color = "beige"
-            } else {
-                buildingPop = false
-                terGlobal.style.color = "black"
+            // check for buildings
+            if (text[3] !== "none") {
+                terGlobal.innerHTML = `<p>${text[3]}</p>`
+                hasBuildings = text[3]
+                terGlobal.classList.add("building-text")
+                if (text[5] == true) {
+                    buildingPop = true
+                    terGlobal.style.color = "beige"
+                } else {
+                    buildingPop = false
+                    terGlobal.style.color = "black"
+                }
+
+            
+            
             }
-            
-            
-        } 
+
+            console.log(terGlobal)
+            armyCol = text[4]
+            deleteOthers(operandEl)
+            terGlobal.style.border = `10px solid ${(text[4] !== "none") ? text[4] : "rgb(113, 251, 138)"}`
+        } else {
+            terGlobal = document.createElement("div")
+            terGlobal.style.width = "80%"
+            terGlobal.style.height = "80%"
+            terGlobal.classList.add("territory-marking")
+            terGlobal.style.display = "flex"
+            terGlobal.style.alignItems = "center"
+            terGlobal.style.justifyContent = "center"
+            terGlobal.style.borderRadius = "50%"
+            if (text[3] !== "none") {
+                terGlobal.innerHTML = `<p>${text[3]}</p>`
+                hasBuildings = text[3]
+                terGlobal.classList.add("building-text")
+                if (text[5] == true) {
+                    buildingPop = true
+                    terGlobal.style.color = "beige"
+                } else {
+                    buildingPop = false
+                    terGlobal.style.color = "black"
+                }
+          
+            }
+            console.log(terGlobal)
+            armyCol = text[4]
+            deleteOthers(operandEl)
+            terGlobal.style.border = `10px solid ${(text[4] !== "none") ? text[4] : "rgb(113, 251, 138)"}`
+
+        }
     } else {
         terGlobal = document.createElement("div")
         terGlobal.style.width = "80%"
@@ -71,15 +105,21 @@ gridForm.addEventListener("submit", (e)=>{
         terGlobal.style.alignItems = "center"
         terGlobal.style.justifyContent = "center"
         terGlobal.style.borderRadius = "50%"
-          
+        if (text[3] !== "none") {
+            terGlobal.innerHTML = `<p>${text[3]}</p>`
+            hasBuildings = text[3]
+            terGlobal.classList.add("building-text")
+            if (text[5] == true) {
+                buildingPop = true
+                terGlobal.style.color = "beige"
+            } else {
+                buildingPop = false
+                terGlobal.style.color = "black"
+            }
+        }
     }
-    console.log(terGlobal)
-    armyCol = text[4]
-    deleteOthers(operandEl)
-    terGlobal.style.border =`10px solid ${(text[4]!=="none")?text[4]:"rgb(113, 251, 138)"}`
-    
+        
     operandEl.appendChild(terGlobal)
-    } 
     saveToStorage(operandEl.id, land, isTerritory, hasBuildings, buildingPop, armyCol, "storageData")
 })
 
@@ -99,6 +139,12 @@ function saveToStorage(elId, landType, whosTerritory, thereBuildings,populated,a
 }
 saveOne.addEventListener("click", () => {
     setStorage("storageOne")
+})
+saveTwo.addEventListener("click", () => {
+    setStorage("storageTwo")
+})
+saveThree.addEventListener("click", () => {
+    setStorage("storageTwo")
 })
 
 
@@ -153,4 +199,98 @@ loadSaveOne.addEventListener("click", () => {
     setStorage("storageData")
     
 })
+loadSaveTwo.addEventListener("click", () => {
+    loadSaved("storageTwo")
+    setStorage("storageData")
+    
+})
+loadSaveThree.addEventListener("click", () => {
+    loadSaved("storageThree")
+    setStorage("storageData")
+    
+})
 
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault()
+        let terrVal = "none"
+        radios.forEach((button) => {
+            if (button.checked) {
+                terrVal = button.value
+            }
+        })
+        let armyVal = "none"
+        armyRad.forEach((button) => {
+            if (button.checked) {
+                armyVal = button.value
+            }
+        })
+        text = [document.querySelector("#row-selector").value + document.querySelector("#col-selector").value, document.querySelector("#land-check").checked, terrVal, document.querySelector("#building").value, armyVal, document.querySelector("#pop-check").checked]
+        console.log(text)
+        const operandEl = document.querySelector(`#${text[0].toUpperCase()}`)
+        let isTerritory = "none"
+        let hasBuildings = "none"
+        let land = null
+        let terGlobal = document.createElement("div")
+        let buildingPop = false
+        let armyCol = "none"
+        deleteOthers(operandEl)
+
+        // check for land type
+        if (text[1]) {
+            operandEl.style.backgroundColor = "rgb(113, 251, 138)"
+            land = true
+        } else if (!text[1]) {
+            operandEl.style.backgroundColor = "blue"
+            land = false
+        }
+        // check for terGlobal
+        if (document.querySelector("#land-check").checked) {
+            isTerritory = text[2]
+            if (isTerritory !== "none") {
+                terGlobal.style.width = "80%"
+                terGlobal.style.height = "80%"
+                terGlobal.style.backgroundColor = (text[2] === "white") ? "gray" : text[2]
+                terGlobal.classList.add("territory-marking")
+                terGlobal.style.display = "flex"
+                terGlobal.style.alignItems = "center"
+                terGlobal.style.justifyContent = "center"
+                terGlobal.style.borderRadius = "50%"
+            
+                // check for buildings
+                if (text[3] !== "none") {
+                    terGlobal.innerHTML = `<p>${text[3]}</p>`
+                    hasBuildings = text[3]
+                    terGlobal.classList.add("building-text")
+                    if (text[5] == true) {
+                        buildingPop = true
+                        terGlobal.style.color = "beige"
+                    } else {
+                        buildingPop = false
+                        terGlobal.style.color = "black"
+                    }
+                
+                
+                }
+            } else {
+                terGlobal = document.createElement("div")
+                terGlobal.style.width = "80%"
+                terGlobal.style.height = "80%"
+                terGlobal.classList.add("territory-marking")
+                terGlobal.style.display = "flex"
+                terGlobal.style.alignItems = "center"
+                terGlobal.style.justifyContent = "center"
+                terGlobal.style.borderRadius = "50%"
+            
+            }
+            console.log(terGlobal)
+            armyCol = text[4]
+            deleteOthers(operandEl)
+            terGlobal.style.border = `10px solid ${(text[4] !== "none") ? text[4] : "rgb(113, 251, 138)"}`
+        
+            operandEl.appendChild(terGlobal)
+        }
+        saveToStorage(operandEl.id, land, isTerritory, hasBuildings, buildingPop, armyCol, "storageData")
+    }
+})

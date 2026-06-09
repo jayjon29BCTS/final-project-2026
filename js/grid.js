@@ -67,7 +67,7 @@ gridForm.addEventListener("submit", (e)=>{
             console.log(terGlobal)
             armyCol = text[4]
             deleteOthers(operandEl)
-            terGlobal.style.border = `10px solid ${(text[4] !== "none") ? text[4] : "rgb(113, 251, 138)"}`
+            terGlobal.style.border = `10px solid ${(text[4] !== "none"||"") ? text[4] : "rgb(113, 251, 138)"}`
         } else {
             terGlobal = document.createElement("div")
             terGlobal.style.width = "80%"
@@ -144,7 +144,7 @@ saveTwo.addEventListener("click", () => {
     setStorage("storageTwo")
 })
 saveThree.addEventListener("click", () => {
-    setStorage("storageTwo")
+    setStorage("storageThree")
 })
 
 
@@ -173,8 +173,9 @@ function loadSaved(storage) {
         } else {
             terGlobal.style.color = "black"
         }
-        if (gridData[i].army !== "none") {
-            terGlobal.style.border = `10px solid ${gridData[i].army}` 
+        console.log(gridData[i].army)
+        if (gridData[i].army !== "") {
+            terGlobal.style.border = `10px solid ${gridData[i].army!==""||null||"none"?gridData[i].army:"white"}` 
         } else if(gridData[i].land) {
             terGlobal.style.border =`10px solid rgb(113, 251, 138)` 
         }
@@ -197,16 +198,19 @@ gridGrid.innerHTML = gridCleared
 loadSaveOne.addEventListener("click", () => {
     loadSaved("storageOne")
     setStorage("storageData")
+    console.log("clicked 1")
     
 })
 loadSaveTwo.addEventListener("click", () => {
     loadSaved("storageTwo")
     setStorage("storageData")
+    console.log("clicked 2")
     
 })
 loadSaveThree.addEventListener("click", () => {
     loadSaved("storageThree")
     setStorage("storageData")
+    console.log("clicked 3")
     
 })
 

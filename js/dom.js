@@ -192,14 +192,14 @@ function setStorage(set) {
         let terrCol = "none"
         let building = "none"
         let pop = false
-            let army = "none"
+        let rmy = "none"
     
         if (box.style.backgroundColor == "rgb(113, 251, 138)") {
             landType = true
         }  if (box.style.backgroundColor == "blue") {
             landType = false
         }
-            let territoryCircle = box.querySelector(".territory-marking")
+            let territoryCircle = box.querySelector(".territory-marking")!==null? box.querySelector(".territory-marking"): document.createElement("div")
                 terrCol = (territoryCircle.style.backgroundColor != "gray") ? territoryCircle.style.backgroundColor : "white"
         
                 if (territoryCircle.textContent !== "") {
@@ -209,10 +209,8 @@ function setStorage(set) {
                     building = territoryCircle.textContent
                 }
         
-            army = territoryCircle.style.borderColor
-            (box.id, landType,terrCol,building,pop,army,set)
-        
-        saveToStorage(box.id, landType,terrCol,building,pop,army,set)
+            rmy = territoryCircle.style.borderColor
+        saveToStorage(box.id, landType,terrCol,building,pop,rmy,set)
     })         
 }
 const buildingChange = document.querySelector("#building")

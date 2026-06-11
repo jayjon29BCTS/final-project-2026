@@ -15,7 +15,6 @@ gridForm.addEventListener("submit", (e)=>{
             armyVal = button.value
         }
     })
-    console.log(armyVal)
     text = [document.querySelector("#row-selector").value+document.querySelector("#col-selector").value,document.querySelector("#land-check").checked, terrVal,document.querySelector("#building").value,armyVal,document.querySelector("#pop-check").checked]
     const operandEl = document.querySelector(`#${text[0].toUpperCase()}`)
     let isTerritory = "none"
@@ -49,7 +48,7 @@ gridForm.addEventListener("submit", (e)=>{
         
             // check for buildings
             if (text[3] !== "none") {
-                terGlobal.innerHTML = `<img src =">`
+                terGlobal.innerHTML = `<p>${text[3]}</p>`
                 hasBuildings = text[3]
                 terGlobal.classList.add("building-text")
                 if (text[5] == true) {
@@ -64,7 +63,6 @@ gridForm.addEventListener("submit", (e)=>{
             
             }
 
-            console.log(terGlobal)
             armyCol = text[4]
             deleteOthers(operandEl)
             terGlobal.style.border = `10px solid ${(text[4] !== "none"||"") ? text[4] : "rgb(113, 251, 138)"}`
@@ -90,7 +88,6 @@ gridForm.addEventListener("submit", (e)=>{
                 }
           
             }
-            console.log(terGlobal)
             armyCol = text[4]
             deleteOthers(operandEl)
             terGlobal.style.border = `10px solid ${(text[4] !== "none") ? text[4] : "rgb(113, 251, 138)"}`
@@ -173,9 +170,8 @@ function loadSaved(storage) {
         } else {
             terGlobal.style.color = "black"
         }
-        console.log(gridData[i].army)
-        if (gridData[i].army !== "") {
-            terGlobal.style.border = `10px solid ${gridData[i].army!==""||null||"none"?gridData[i].army:"white"}` 
+        if (gridData[i].army !== ""&&gridData[i].army!=="none") {
+            terGlobal.style.border = `10px solid ${gridData[i].army}` 
         } else if(gridData[i].land) {
             terGlobal.style.border =`10px solid rgb(113, 251, 138)` 
         }
@@ -198,19 +194,17 @@ gridGrid.innerHTML = gridCleared
 loadSaveOne.addEventListener("click", () => {
     loadSaved("storageOne")
     setStorage("storageData")
-    console.log("clicked 1")
+
     
 })
 loadSaveTwo.addEventListener("click", () => {
     loadSaved("storageTwo")
     setStorage("storageData")
-    console.log("clicked 2")
     
 })
 loadSaveThree.addEventListener("click", () => {
     loadSaved("storageThree")
     setStorage("storageData")
-    console.log("clicked 3")
     
 })
 
@@ -231,7 +225,6 @@ document.addEventListener("keydown", (e) => {
             }
         })
         text = [document.querySelector("#row-selector").value + document.querySelector("#col-selector").value, document.querySelector("#land-check").checked, terrVal, document.querySelector("#building").value, armyVal, document.querySelector("#pop-check").checked]
-        console.log(text)
         const operandEl = document.querySelector(`#${text[0].toUpperCase()}`)
         let isTerritory = "none"
         let hasBuildings = "none"
@@ -288,7 +281,6 @@ document.addEventListener("keydown", (e) => {
                 terGlobal.style.borderRadius = "50%"
             
             }
-            console.log(terGlobal)
             armyCol = text[4]
             deleteOthers(operandEl)
             terGlobal.style.border = `10px solid ${(text[4] !== "none") ? text[4] : "rgb(113, 251, 138)"}`

@@ -187,33 +187,11 @@ armyRad.forEach((button) => {
     })
 })
 function setStorage(set) {
-        boxes.forEach((box) => {
-        let landType = null
-        let terrCol = "none"
-        let building = "none"
-        let pop = false
-        let rmy = "none"
-    
-        if (box.style.backgroundColor == "rgb(113, 251, 138)") {
-            landType = true
-        }  if (box.style.backgroundColor == "blue") {
-            landType = false
-        }
-            let territoryCircle = box.querySelector(".territory-marking")!==null? box.querySelector(".territory-marking"): document.createElement("div")
-                terrCol = (territoryCircle.style.backgroundColor != "gray") ? territoryCircle.style.backgroundColor : "white"
-        
-                if (territoryCircle.textContent !== "") {
-                    if (territoryCircle.style.color !== "black") {
-                        pop = true
-                    }
-                    building = territoryCircle.textContent
-                }
-        
-            rmy = territoryCircle.style.borderColor
-        saveToStorage(box.id, landType,terrCol,building,pop,rmy,set)
-    })         
+    storageData = gridData
+    localStorage.setItem(set,JSON.stringify(storageData))
 }
 const buildingChange = document.querySelector("#building")
+console.log(buildingChange)
 const landCheck = document.querySelector("#land-check")
 const landCheckLabel = document.querySelector("#land-check-label")
 landCheck.addEventListener("click", () => {
@@ -227,15 +205,15 @@ landCheck.addEventListener("click", () => {
         buildingChange.innerHTML = `
             <option value="none">none</option>
             <option value="hut">hut</option>
-            <option value="lumberyard">lumberyard</option>
+            <option value="lumyar">lumyar</option>
             <option value="garden">garden</option>
             <option value="embassy">embassy</option>
             <option value="refinery">refinery</option>
             <option value="quarry">quarry</option>
             <option value="barracks">barracks</option>
-            <option value="multicenter">multicenter</option>
+            <option value="multicenter">multi</option>
             <option value="complex">complex</option>
-            <option value="defenseArray">defense Array</option>
+            <option value="defArr">defArr</option>
             <option value="city">city</option>`
     } else {
         console.log("sea")

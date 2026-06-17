@@ -290,3 +290,11 @@ document.addEventListener("keydown", (e) => {
         saveToStorage(operandEl.id, land, isTerritory, hasBuildings, buildingPop, armyCol, "storageData")
     }
 })
+boxes.forEach((box) => {
+    box.addEventListener("click",()=>{
+        let clickedId = box.id.split("")
+        document.querySelector("#row-selector").value = clickedId[0]
+        document.querySelector("#col-selector").value = clickedId[1]
+
+    })
+ })
